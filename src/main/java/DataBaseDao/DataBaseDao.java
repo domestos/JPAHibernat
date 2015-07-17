@@ -1,5 +1,7 @@
 package DataBaseDao;
 
+import DataBaseObject.Company;
+
 import java.util.List;
 
 /**
@@ -12,7 +14,13 @@ public interface DataBaseDao<T> {
 
     void delete(T c);
 
-    T findID(Object id);
+    void printList(List<T> obj);
+
+    void mergeThis(T c);
+
+    T findID(int id);
 
     List<T> findAll();
+
+
 }

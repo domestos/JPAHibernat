@@ -2,6 +2,7 @@ package DataBaseDao.DataBaseImpl;
 
 
 import DataBaseDao.DataBaseDao;
+import DataBaseObject.Company;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -34,55 +35,39 @@ public abstract class DataBaseDaoImp<T> implements DataBaseDao<T>{
     }
 
     public void insert(T c) {
-        try{
-            if(em == null){
-                System.out.println("this vary bed");
-            }
             em.getTransaction().begin();
             em.persist(c);
             em.getTransaction().commit();
-        }finally {
-            closeEntytiManager(em);
-        }
     }
 
     public void delete(T c){
-
-        try{
-
             em.getTransaction().begin();
             em.remove(c);
             em.getTransaction().commit();
-        }finally{
-            closeEntytiManager(em);
+
+    }
+
+    public T findID(int id){
+        return  em.find(getEntityClass(), id);
+    }
+
+    public void printList(List<T> obj){
+        for(Object ob: obj){
+            System.out.print(ob + " ");
         }
-
+        System.out.println();
     }
 
-    public T findID(Object id){
-
-        try{
-
-            return  em.find(getEntityClass(), id);
-        }finally {
-            closeEntytiManager(em);
-        }
-
-    }
-
-    public List<T> findAll(){
-        List<T> findList = null;
-
-        return findList;
+    public void mergeThis(T c){
+        em.getTransaction().begin();
+        em.merge(c);
+        em.getTransaction().commit();
     }
 
 
-    public void closeEntytiManager(EntityManager em){
-        if(em.isOpen()){
-            em.close();
-        }
-    }
 }
+
+
 
 
 

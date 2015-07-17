@@ -9,7 +9,7 @@
         <class>Comopanies</class>
         <properties>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://82.207.109.251/varenik" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://10.14.1.252/varenik" />
             <property name="hibernate.connection.username" value="varenik" />
             <property name="hibernate.connection.password" value="Gladiator000" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />

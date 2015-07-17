@@ -27,24 +27,44 @@ public class Main {
        Company company = new Company("dzk company use factory", cartridgeList);
 
 
-        Cartridge cartridge1 = new Cartridge("Samsung scx-46001",company);
-        Cartridge cartridge2 = new Cartridge("Samsung scx-46001",company);
+        Cartridge cartridge1 = new Cartridge("Samsung scx-4300",company);
+        Cartridge cartridge2 = new Cartridge("Samsung scx-4300",company);
 
         cartridgeList.add(cartridge1);
         cartridgeList.add(cartridge2);
 
-        // ADD
-        companyDao.insert(company);
-        FactoryDao.getInstance().closeFactory();
 
+        // BEGIN //  ADD ---------------------------------------------------
+        //companyDao.insert(company);
+        //companyDao.mergeThis(new Company("NEW COMPANY",null));
+        // END //  ADD -----------------------------------------------------
 
+        // BEGIN // fin ALL-------------------------------------------------
+         companyDao.printList(companyDao.findAll());
+         // END // fin ALL---------------------------------------------------
 
-      // System.out.println("find id = "+);
-      //  System.out.println(companyDaoImp.findAll());
+       // BEGIN // fin object id -------------------------------------------
+         System.out.println(companyDao.findID(6));
+        // END // fin object id --------------------------------------------
 
-       // companyDaoImp.delete(companyDaoImp.findID(1));
+        // BEGIN // UPDATE -------------------------------------------------
+           // variant 1
+            Company com = companyDao.findID(7);
+            com.setNameCompany("new company ZHOPA");
+            companyDao.mergeThis(com);
+
+        // variant 2 //pereday cartrig inshiy kompaniy
+           Cartridge car = cartridgeDao.findID(2);
+           car.setCompany(companyDao.findID(1));
+           cartridgeDao.mergeThis(car);
+        // END // UPDATE ---------------------------------------------------
+
+      FactoryDao.getInstance().closeFactory();
+
 
     }
+
+
 
 
 

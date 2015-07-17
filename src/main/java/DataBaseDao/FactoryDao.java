@@ -53,9 +53,16 @@ public class FactoryDao {
     public CartridgeDao getCartridgeDao() {
         return cartridgeDao;
     }
+
     public void closeFactory(){
+
+        if(em.isOpen()){
+            em.close();
+        }
+
         if(factory.isOpen()){
         factory.close();
         }
     }
+
 }

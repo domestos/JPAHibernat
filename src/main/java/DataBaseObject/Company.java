@@ -7,6 +7,7 @@ import java.util.List;
  * Created by v.pelenskyi on 16.07.2015.
  */
 @Entity
+@Table(name = "company")
 public class Company  {
 
 
@@ -21,6 +22,7 @@ public class Company  {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "company")
     private List<Cartridge> cartridgeList;
 
+    // BEGIN // COMSTRUCTOR
     public Company() {
     }
 
@@ -28,11 +30,42 @@ public class Company  {
         this.nameCompany = nameCompany;
         this.cartridgeList = cartridgeList;
     }
+    // END // COMSTRUCTOR
 
+
+    // BEGIN // GETTER & SETTER
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNameCompany() {
+        return nameCompany;
+    }
+
+    public void setNameCompany(String nameCompany) {
+        this.nameCompany = nameCompany;
+    }
+
+    public List<Cartridge> getCartridgeList() {
+        return cartridgeList;
+    }
+
+    public void setCartridgeList(List<Cartridge> cartridgeList) {
+        this.cartridgeList = cartridgeList;
+    }
+    // END // GETTER & SETTER
+
+
+    // BEGIN // TOSTRING
     @Override
     public String toString() {
-        return "Company{" +
-                "nameCompany='" + nameCompany + '\'' +
-                '}';
+        return  "|*** " +
+                "Name:-> " + nameCompany +
+                "***|  \n cartridge: " + cartridgeList+"\n\n\n"  ;
     }
+    // END // TOSTRING
 }
