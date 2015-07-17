@@ -2,15 +2,11 @@ package DataBaseDao.DataBaseImpl;
 
 
 import DataBaseDao.DataBaseDao;
-import DataBaseObject.Company;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by VarenikWin10 on 16.07.2015.
@@ -64,56 +60,16 @@ public abstract class DataBaseDaoImp<T> implements DataBaseDao<T>{
         em.getTransaction().commit();
     }
 
+    public List<String> selectQvery(String quvery){
+        System.out.println(quvery);
+        return em.createQuery(quvery).getResultList();
+    }
+
+    public List<T> selectObjecQvery(String quvery){
+        System.out.println(quvery);
+
+        return em.createQuery(quvery).getResultList();
+    }
+
 
 }
-
-
-
-
-
-/*
-*
-
-    private  static EntityManagerFactory fuctory = getEmptityManagerFactory();
-
-    public static EntityManagerFactory getEmptityManagerFactory()  {
-        fuctory = Persistence.createEntityManagerFactory("primary");
-        return fuctory;
-    }
-
-    public void tempSession(){
-        EntityManager em = fuctory.createEntityManager();
-    }
-
-    public void insert(Company company) {
-        EntityManager em = fuctory.createEntityManager();
-        em.getTransaction().begin();
-        em.persist(company);
-        em.getTransaction().commit();
-    }
-
-    public Company findID (int id) {
-        Company result = null;
-        EntityManager em = fuctory.createEntityManager();
-        result = em.find(Company.class, id);
-        return result;
-    }
-
-
-    public List<Company> findAll () {
-        Company result = null;
-        EntityManager em = fuctory.createEntityManager();
-        return em.createQuery("from Company").getResultList();
-
-
-    }
-
-    public void delete(Company company){
-        EntityManager em = fuctory.createEntityManager();
-        em.getTransaction().begin();
-        em.remove(company);
-        em.getTransaction().commit();
-    }
-
-
-*/

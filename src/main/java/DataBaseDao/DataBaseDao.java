@@ -22,5 +22,7 @@ public interface DataBaseDao<T> {
 
     List<T> findAll();
 
+    List<String> selectQvery(String quvery);
 
+    List<T> selectObjecQvery(String quvery);
 }
